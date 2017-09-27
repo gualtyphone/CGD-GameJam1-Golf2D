@@ -31,9 +31,9 @@ public class RollingBehaviour : MonoBehaviour {
         Vector2 drForce = new Vector2((surroundArea[4] - surroundArea[8]) * -0.5f, (surroundArea[4] - surroundArea[8]) * -0.5f);
         Vector2 dlForce = new Vector2((surroundArea[4] - surroundArea[6]) * 0.5f, (surroundArea[4] - surroundArea[6]) * -0.5f);
         
-        vel += uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce;
-        Debug.Log(vel);
-        Vector3 vel3 = new Vector3(vel.x, 0.0f, vel.y);
-        rigi.velocity = vel;
+        vel = uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce;
+        //Debug.Log(vel);
+        //Vector3 vel3 = new Vector3(vel.x, 0.0f, vel.y);
+        rigi.AddForce(vel);
     }
 }
