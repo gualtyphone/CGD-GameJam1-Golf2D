@@ -36,7 +36,7 @@ public class HeatMap : MonoBehaviour {
             {
                 for (int h = 0; h < 3; h++)
                 {
-                    arr[w + h * 3] = colArr[w + (2 - h) * 3].g;
+                    arr[w + h * 3] = colArr[w + h * 3].g;
                 }
             }
             return arr;
