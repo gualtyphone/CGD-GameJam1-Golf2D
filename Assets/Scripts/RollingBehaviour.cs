@@ -7,13 +7,17 @@ public class RollingBehaviour : MonoBehaviour {
     Rigidbody2D rigi;
     Vector2 vel;
     public HeatMap heatmap; 
+    public float degrees = 20.0f;
+    public float magnitude = 1.0f; 
     float[] surroundArea = new float[9];
+    float offset = -90.0f; 
     void Start ()
     {
         //pos = new Vector3(0, 0, 0);
         pos = this.transform.position;
         rigi = GetComponent<Rigidbody2D>();
-        vel = rigi.velocity; 
+        vel = rigi.velocity;
+        ApplyForce((360 - degrees) - offset, magnitude);
     }
 
     // Update is called once per frame
@@ -35,5 +39,11 @@ public class RollingBehaviour : MonoBehaviour {
         //Debug.Log(vel);
         //Vector3 vel3 = new Vector3(vel.x, 0.0f, vel.y);
         rigi.AddForce(vel);
+    }
+    //Direction 0-360 degrees 
+    void ApplyForce(float degree, float magnitude)
+    {
+        Vector2 direction = (Vector2)(Quaternion.Euler(0, 0, degree) * Vector2.right);
+        rigi.AddForce(direction * magnitude); 
     }
 }
