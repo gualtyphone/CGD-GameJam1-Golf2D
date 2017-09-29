@@ -10,8 +10,8 @@ public class RollingBehaviour : MonoBehaviour {
     float[] surroundArea = new float[9];
     void Start ()
     {
-        pos = new Vector3(0, 0, 0);
-        this.transform.position = pos;
+        //pos = new Vector3(0, 0, 0);
+        pos = this.transform.position;
         rigi = GetComponent<Rigidbody2D>();
         vel = rigi.velocity; 
     }
