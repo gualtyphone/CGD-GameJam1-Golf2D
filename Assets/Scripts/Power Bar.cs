@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PowerBar : MonoBehaviour {
 
-    private float totalWidth = 256;
+    public float totalWidth = 256;
     private float powerLevel;
+
+
 
 }
