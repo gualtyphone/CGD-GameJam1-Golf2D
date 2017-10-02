@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class powerBar : MonoBehaviour {
-    
-		bool down = true; //start moving up
-        bool up = true; //start moving up
 
-        float powerUp = 2.0f;
-        float powerDown = 2.0f;
-        float maxHeight = 100;
-        float minHeight = 0;
-        public float currentHeight = 0;
-        public float currentRotation = 0;
-        public GameObject power;
-        public GameObject ball;
-        public GameObject bat;
-        public GameObject batParent;
-        public GameObject imagePower;
+    public KeyCode playerKey = KeyCode.A;
+
+    bool down = true; //start moving up
+    bool up = true; //start moving up
+
+    float powerUp = 2.0f;
+    float powerDown = 2.0f;
+    float maxHeight = 100.0f;
+    float minHeight = 0.0f;
+    float maxLength = 2.5f;
+    float minLength = 0.5f;
+
+    public float currentHeight = 0.0f;
+    public float currentRotation = 0;
+    public GameObject power;
+    public GameObject ball;
+    public GameObject bat;
+    public GameObject batParent;
+    public GameObject imagePower;
 
 	float prevSpeed = 0.0f;
 
@@ -35,7 +40,7 @@ public class powerBar : MonoBehaviour {
     // Update is called once per frame
     void Update () 
 	{
-		transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
+		//transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
 		switch (state) {
 		case ballState.Moving:
 			if (ball.GetComponent<Rigidbody2D> ().velocity.magnitude == 0.0f) {
@@ -48,16 +53,17 @@ public class powerBar : MonoBehaviour {
 			break;
 		case ballState.Rotating:
 			RotateShot ();
-			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+			if (Input.GetKeyDown (playerKey)) {
 				state = ballState.SpeedSelection;
 			}
 			break;
 		case ballState.SpeedSelection:
 			MovePowerBar ();
-			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+            bat.transform.localScale = new Vector3(bat.transform.localScale.x, currentHeight / 100 * 2.0f + 1.0f, bat.transform.localScale.z);
+            if (Input.GetKeyDown (playerKey)) {
 
-				currentHeight = power.transform.position.y;
-				ball.GetComponent<RollingBehaviour> ().ApplyForce(currentRotation, currentHeight/100.0f);
+                
+				ball.GetComponent<RollingBehaviour> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
 				state = ballState.Accelerating;
 				prevSpeed = -1.0f;
