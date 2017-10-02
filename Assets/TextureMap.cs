@@ -4,11 +4,13 @@ using UnityEngine;
 
 public enum Terrains
 {
+    GRASS,
     SAND,
     WATER,
-    GREEN,
-    ROUGH,
-    FOREST
+    WALL,
+    HILL,
+    START,
+    FINISH
 }
 
 [System.Serializable]
@@ -33,6 +35,43 @@ public class TextureMap : MonoBehaviour {
     void Start()
     {
         texMap = GetComponent<SpriteRenderer>().sprite.texture;
+        Color[] col = texMap.GetPixels();
+        float dist = 1000000;
+        Vector2 startPos;
+        Vector2 holePos;
+        foreach (var terrColor in terrainColors)
+        {
+            if (terrColor.terr == Terrains.START)
+            {
+                for (int x = 0; x < texMap.width; x++)
+                {
+                    for (int y = 0; y < texMap.height; y++)
+                    {
+                        var currentDist = Vector4.Distance(col[x+y*texMap.width], terrColor.col);
+                        if (currentDist < dist)
+                        {
+                            dist = currentDist;
+                            startPos = new Vector2(x, y);
+                        }
+                    }
+                }
+            }
+            if (terrColor.terr == Terrains.FINISH)
+            {
+                for (int x = 0; x < texMap.width; x++)
+                {
+                    for (int y = 0; y < texMap.height; y++)
+                    {
+                        var currentDist = Vector4.Distance(col[x + y * texMap.width], terrColor.col);
+                        if (currentDist < dist)
+                        {
+                            dist = currentDist;
+                            holePos = new Vector2(x, y);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     void Update()
@@ -48,7 +87,7 @@ public class TextureMap : MonoBehaviour {
         Color col = texMap.GetPixel(x, z);
 
         float dist = 1000000;
-        Terrains terr = Terrains.FOREST;
+        Terrains terr = Terrains.WATER;
         foreach (var terrColor in terrainColors)
         {
             var currentDist = Vector4.Distance(col, terrColor.col);
