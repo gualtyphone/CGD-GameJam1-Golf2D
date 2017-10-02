@@ -5,12 +5,11 @@ using UnityEngine;
 public class RollingBehaviour : MonoBehaviour {
     Vector3 pos;
     Rigidbody2D rigi;
-    Vector2 vel;
+    public Vector2 vel;
     public HeatMap heatmap; 
     public float degrees = 20.0f;
     public float magnitude = 1.0f; 
     float[] surroundArea = new float[9];
-    float offset = -90.0f; 
     void Start ()
     {
         //pos = new Vector3(0, 0, 0);

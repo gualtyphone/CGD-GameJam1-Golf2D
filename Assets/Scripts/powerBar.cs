@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class powerBar : MonoBehaviour {
     
+		bool down = true; //start moving up
         bool up = true; //start moving up
-        bool down = false;
-        public bool Pstopped = false;
-        public bool Rstopped = true;
 
         float powerUp = 2.0f;
         float powerDown = 2.0f;
@@ -19,37 +17,66 @@ public class powerBar : MonoBehaviour {
         public GameObject ball;
         public GameObject bat;
         public GameObject batParent;
+        public GameObject imagePower;
 
-    // Update is called once per frame
-    void Update () {
-        if (!Pstopped)
-        {
-            MovePowerBar();
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Pstopped = true;
-                Rstopped = false;
-                //RotateShot();
-                //currentHeight = power.transform.position.y;  
-            }
-        }
-        else if (!Rstopped)
-        {
-            RotateShot();
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Rstopped = true;
-                //RotateShot();
-                currentHeight = power.transform.position.y;
-                //currentRotation = rotation.transform.rotation.y;
-                Debug.Log(currentRotation);
-                ball.GetComponent<RollingBehaviour>().ApplyForce(currentRotation, 1.0f);
-                Destroy(bat);
+	float prevSpeed = 0.0f;
 
-            }
-        }
+	public enum ballState
+	{
+		Accelerating,
+		Moving,
+		Rotating,
+		SpeedSelection,
+		none
 	}
 
+	public ballState state = ballState.Rotating;
+
+    // Update is called once per frame
+    void Update () 
+	{
+		transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
+		switch (state) {
+		case ballState.Moving:
+			if (ball.GetComponent<Rigidbody2D> ().velocity.magnitude == 0.0f) {
+				state = ballState.Rotating;
+				bat.SetActive (true);
+				batParent.transform.rotation = new Quaternion (0.0f, 0.0f, 0.0f, 0.0f);
+				batParent.transform.Rotate (new Vector3 (0.0f, 0.0f, -90.0f));
+				currentRotation = 0.0f;
+			}
+			break;
+		case ballState.Rotating:
+			RotateShot ();
+			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+				state = ballState.SpeedSelection;
+			}
+			break;
+		case ballState.SpeedSelection:
+			MovePowerBar ();
+			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+
+				currentHeight = power.transform.position.y;
+				ball.GetComponent<RollingBehaviour> ().ApplyForce(currentRotation, currentHeight/100.0f);
+				bat.SetActive (false);
+				state = ballState.Accelerating;
+				prevSpeed = -1.0f;
+			}
+			break;
+		case ballState.Accelerating:
+			
+			if (prevSpeed > ball.GetComponent<Rigidbody2D> ().velocity.magnitude) {
+				state = ballState.Moving;
+			}
+			prevSpeed = ball.GetComponent<Rigidbody2D> ().velocity.magnitude;
+			break;
+		case ballState.none:
+			bat.SetActive (false);
+			break;
+		}
+
+	
+	}
     void RotateShot()
     {
         //transform.localRotation.Set(transform.localRotation.x, transform.localRotation.y + 1, transform.localRotation.z, transform.localRotation.w);
@@ -67,22 +94,17 @@ public class powerBar : MonoBehaviour {
     {
         if (up)
         {
-            transform.Translate(Vector2.up * powerUp);  //move bar up
-            if (transform.position.y > maxHeight)
+			currentHeight++;
+			if (currentHeight > maxHeight)
             {
-                up = false;
-                down = true;
-               
+				up = false;
             }
-            
         }
-        else if (!up)
+        else
         {
-            transform.Translate(Vector2.up * -powerDown);   //move bar down
-            if (transform.position.y < minHeight)
-            {
-                down = false;
-                up = true;
+			currentHeight--;
+			if (currentHeight < minHeight){
+				up = true;
             }
         }
     }
