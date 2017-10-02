@@ -17,7 +17,7 @@ public class RollingBehaviour : MonoBehaviour {
         pos = this.transform.position;
         rigi = GetComponent<Rigidbody2D>();
         vel = rigi.velocity;
-        ApplyForce((360 - degrees) - offset, magnitude);
+        //ApplyForce((360 - degrees) - offset, magnitude);
     }
 
     // Update is called once per frame
@@ -41,9 +41,16 @@ public class RollingBehaviour : MonoBehaviour {
         rigi.AddForce(vel);
     }
     //Direction 0-360 degrees 
-    void ApplyForce(float degree, float magnitude)
+    public void ApplyForce(float degree, float magnitude)
     {
         Vector2 direction = (Vector2)(Quaternion.Euler(0, 0, degree) * Vector2.right);
         rigi.AddForce(direction * magnitude); 
+    }
+
+    public void ApplyForce(Vector3 forward, float magnitude)
+    {
+        forward.Normalize();
+        Vector2 direction = new Vector2(forward.x, forward.y);
+        rigi.AddForce(direction * magnitude);
     }
 }
