@@ -17,10 +17,12 @@ public class ButtonSpriteSwitch : MonoBehaviour {
         if (button.GetComponent<Image>().sprite == buttonImageOn)
         {
             button.GetComponent<Image>().sprite = buttonImageOff;
+            AudioListener.volume = 0;
         }
         else
         {
             button.GetComponent<Image>().sprite = buttonImageOn;
+            AudioListener.volume = 1;
         }
     }
 
