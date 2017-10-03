@@ -25,19 +25,22 @@ public class powerBar : MonoBehaviour {
     public GameObject imagePower;
     public GameObject playerManager;
 	float prevSpeed = 0.0f;
+    Rigidbody2D rigi;
 
 	public enum ballState
 	{
 		Accelerating,
 		Moving,
+        StartRotating,
 		Rotating,
 		SpeedSelection,
+        Hole,
 		none
 	}
 
-    void start ()
+    void Start ()
     {
-        
+        rigi = GetComponentInParent<Rigidbody2D>();
     }
 
 	public ballState state = ballState.Rotating;
@@ -45,19 +48,38 @@ public class powerBar : MonoBehaviour {
     // Update is called once per frame
     void Update () 
 	{
+        if (state == ballState.none)
+        {
+            return;
+        }
+        if (rigi.velocity.magnitude <= 0.001f &&
+            !( 
+            state == ballState.Rotating ||
+            state == ballState.StartRotating ||
+            state == ballState.SpeedSelection ||
+            state == ballState.Hole
+            ))
+        {
+            state = ballState.StartRotating;
+        }
+        else if(rigi.velocity.magnitude > 0.001f)
+        {
+            state = ballState.Moving;
+        }
 		bat.GetComponent<SpriteRenderer>().color = (new Color(1.0f , 1.0f, 1.0f));
 		//transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
 		switch (state) {
-		case ballState.Moving:
-			if (ball.GetComponent<Rigidbody2D> ().velocity.magnitude <= 0.1f) {
-				state = ballState.Rotating;
-				bat.SetActive (true);
-				batParent.transform.rotation = new Quaternion (0.0f, 0.0f, 0.0f, 0.0f);
-				batParent.transform.Rotate (new Vector3 (0.0f, 0.0f, -90.0f));
-				currentRotation = 0.0f;
-			}
-			break;
-		case ballState.Rotating:
+            case ballState.Moving:
+                bat.SetActive(false);
+                break;
+            case ballState.StartRotating:
+                bat.SetActive(true);
+                batParent.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+                batParent.transform.Rotate(new Vector3(0.0f, 0.0f, -90.0f));
+                currentRotation = 0.0f;
+                state = ballState.Rotating;
+            break;
+            case ballState.Rotating:
 			RotateShot ();
 			if (Input.GetKeyDown (playerKey)) {
 				state = ballState.SpeedSelection;
@@ -80,8 +102,6 @@ public class powerBar : MonoBehaviour {
 				ball.GetComponent<BallController> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
                 //addHit();
-				state = ballState.Accelerating;
-				prevSpeed = -1.0f;
 			}
 			break;
 		case ballState.Accelerating:
@@ -94,7 +114,10 @@ public class powerBar : MonoBehaviour {
 		case ballState.none:
 			bat.SetActive (false);
 			break;
-		}
+        case ballState.Hole:
+            bat.SetActive(false);
+            break;
+        }
 
 	
 	}
