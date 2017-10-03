@@ -13,6 +13,9 @@ public class BallController : MonoBehaviour {
     public float magnitude = 1.0f; 
     float[] surroundArea = new float[9];
 
+	[SerializeField]
+	Terrains terrain;
+
     void Start ()
     {
         //pos = new Vector3(0, 0, 0);
@@ -26,27 +29,15 @@ public class BallController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        surroundArea = heatmap.getPixelsAtPosition(pos);
-        //Debug.Log(surroundArea[0]);
-        pos = this.transform.position;
-        Vector2 uForce = new Vector2(0, (surroundArea[4] - surroundArea[1]));
-        Vector2 dForce = new Vector2(0, (surroundArea[4] - surroundArea[7]) * -1);
-        Vector2 lForce = new Vector2((surroundArea[4] - surroundArea[3]), 0);
-        Vector2 rForce = new Vector2((surroundArea[4] - surroundArea[5]) * -1, 0);
-        Vector2 urForce = new Vector2((surroundArea[4] - surroundArea[2]) * -0.5f, (surroundArea[4] - surroundArea[2]) * 0.5f);
-        Vector2 ulForce = new Vector2((surroundArea[4] - surroundArea[0]) * 0.5f, (surroundArea[4] - surroundArea[0]) * 0.5f);
-        Vector2 drForce = new Vector2((surroundArea[4] - surroundArea[8]) * -0.5f, (surroundArea[4] - surroundArea[8]) * -0.5f);
-        Vector2 dlForce = new Vector2((surroundArea[4] - surroundArea[6]) * 0.5f, (surroundArea[4] - surroundArea[6]) * -0.5f);
-        
-        vel = uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce;
-		Terrains terrain = texMap.getTerrainAtPosition(pos); 
+		terrain = texMap.getTerrainAtPosition(this.transform.position); 
 		coll.isTrigger = false; 
 		switch (terrain)
 		{
 		case Terrains.GRASS:
+			GetComponent<Rigidbody2D>().drag = 1; 
 			break;
 		case Terrains.SAND:
-			vel /= 2; 
+			GetComponent<Rigidbody2D>().drag = 7; 
 			break;
 		case Terrains.WATER:
 			pos = texMap.startPos; 
@@ -60,6 +51,24 @@ public class BallController : MonoBehaviour {
 			coll.isTrigger = true; 
 			break;
 		}
+
+		if (heatmap != null)
+		{
+	        surroundArea = heatmap.getPixelsAtPosition(pos);
+	        //Debug.Log(surroundArea[0]);
+	        pos = this.transform.position;
+	        Vector2 uForce = new Vector2(0, (surroundArea[4] - surroundArea[1]));
+	        Vector2 dForce = new Vector2(0, (surroundArea[4] - surroundArea[7]) * -1);
+	        Vector2 lForce = new Vector2((surroundArea[4] - surroundArea[3]), 0);
+	        Vector2 rForce = new Vector2((surroundArea[4] - surroundArea[5]) * -1, 0);
+	        Vector2 urForce = new Vector2((surroundArea[4] - surroundArea[2]) * -0.5f, (surroundArea[4] - surroundArea[2]) * 0.5f);
+	        Vector2 ulForce = new Vector2((surroundArea[4] - surroundArea[0]) * 0.5f, (surroundArea[4] - surroundArea[0]) * 0.5f);
+	        Vector2 drForce = new Vector2((surroundArea[4] - surroundArea[8]) * -0.5f, (surroundArea[4] - surroundArea[8]) * -0.5f);
+	        Vector2 dlForce = new Vector2((surroundArea[4] - surroundArea[6]) * 0.5f, (surroundArea[4] - surroundArea[6]) * -0.5f);
+	        
+	        vel = uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce;
+		}
+
         //Debug.Log(vel);
         //Vector3 vel3 = new Vector3(vel.x, 0.0f, vel.y);
         rigi.AddForce(vel);

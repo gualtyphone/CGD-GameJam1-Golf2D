@@ -114,9 +114,9 @@ public class TextureMap : MonoBehaviour {
 
     public Terrains getTerrainAtPosition(Vector3 pos)
     {
-        var vec = Camera.main.WorldToScreenPoint(pos);
-        int x = Mathf.FloorToInt(vec.x * texMap.width / Camera.main.pixelWidth);
-        int z = Mathf.FloorToInt(vec.y * texMap.height / Camera.main.pixelHeight);
+        //var vec = Camera.main.WorldToScreenPoint(pos);
+        int x = Mathf.FloorToInt(pos.x * 100);
+        int z = Mathf.FloorToInt(pos.y * 100);
         Color col = texMap.GetPixel(x, z);
 
         float dist = 1000000;

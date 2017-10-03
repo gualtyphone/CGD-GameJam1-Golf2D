@@ -45,6 +45,7 @@ public class powerBar : MonoBehaviour {
     // Update is called once per frame
     void Update () 
 	{
+		bat.GetComponent<SpriteRenderer>().color = (new Color(1.0f , 1.0f, 1.0f));
 		//transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
 		switch (state) {
 		case ballState.Moving:
@@ -65,7 +66,8 @@ public class powerBar : MonoBehaviour {
 		case ballState.SpeedSelection:
 			MovePowerBar ();
             bat.transform.localScale = new Vector3(bat.transform.localScale.x, currentHeight / 100 * 2.0f + 1.0f, bat.transform.localScale.z);
-            if (Input.GetKeyDown (playerKey)) {
+			bat.GetComponent<SpriteRenderer>().color = (new Color(1.0f - (currentHeight / 100.0f),currentHeight / 100.0f, 0.0f));
+			if (Input.GetKeyDown (playerKey)) {
 				ball.GetComponent<BallController> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
                 //addHit();
