@@ -28,14 +28,21 @@ public class Hole : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (Vector3.Distance(transform.position, other.transform.position) < other.bounds.extents.magnitude)
-        other.GetComponent<Rigidbody2D>().AddForce((transform.position - other.transform.position) * Time.deltaTime * speed);
-        if ((transform.position - other.transform.position).sqrMagnitude < (other.bounds.extents - GetComponent<Collider2D>().bounds.extents).sqrMagnitude)
+        if (other.tag == "Ball")
         {
-            Debug.Log("Hole");
-			other.GetComponent<BallController>().enabled = false;
-            other.transform.position = transform.position;
-            other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (other.GetComponent<BallController>().enabled == true)
+            { 
+                if (Vector3.Distance(transform.position, other.transform.position) < other.bounds.extents.magnitude)
+                    other.GetComponent<Rigidbody2D>().AddForce(((transform.position - other.transform.position) * Time.deltaTime * speed*speed));
+                if ((transform.position - other.transform.position).sqrMagnitude < (other.bounds.extents - GetComponent<Collider2D>().bounds.extents).sqrMagnitude)
+                {
+                    //Debug.Log("Hole");
+                    other.GetComponent<BallController>().enabled = false;
+                    other.transform.position = transform.position;
+                    other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    source.PlayOneShot(ballPot, 1f);
+                }
+            }
         }
     }
 }

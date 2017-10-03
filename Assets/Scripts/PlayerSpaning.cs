@@ -51,7 +51,7 @@ public class PlayerSpaning : MonoBehaviour {
 			}
 			if (i == 2)
 			{
-				instantiatePlayer(Color.green, ps.k3);
+				instantiatePlayer(new Color(1.0f, 0.0f, 1.0f), ps.k3);
 			}
 			if (i == 3)
 			{
