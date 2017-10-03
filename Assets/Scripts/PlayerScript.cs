@@ -43,10 +43,6 @@ public class PlayerScript : MonoBehaviour {
 			p3.SetActive (true);
 			p4.SetActive (true);
 		}
-
-		//panel.GetComponent<GameObject> ().SetActive (false);
-
-		//GetComponent<MainMenuScript> ().loadLevel (1);
 	}
 
     public void addScore(int playerNum, int score)
