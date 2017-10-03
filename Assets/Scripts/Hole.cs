@@ -11,6 +11,8 @@ public class Hole : MonoBehaviour {
     [SerializeField]
     AudioSource source;
 
+    
+
     // Use this for initialization
     void Start () {
         source = GetComponent<AudioSource>();
@@ -23,19 +25,19 @@ public class Hole : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
+        
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Ball")
         {
-            if (other.GetComponent<BallController>().enabled == true)
+            if (other.GetComponentInChildren<powerBar>().state != powerBar.ballState.none)
             { 
                 other.GetComponent<Rigidbody2D>().AddForce(((transform.position - other.transform.position) * (Time.deltaTime * speed)));
                 if ((transform.position - other.transform.position).sqrMagnitude < (other.bounds.extents - GetComponent<Collider2D>().bounds.extents).sqrMagnitude)
                 {
-                    other.GetComponent<BallController>().enabled = false;
+                    other.GetComponentInChildren<powerBar>().state = powerBar.ballState.none;
                     other.transform.position = transform.position;
                     other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     source.PlayOneShot(ballPot, 1f);
