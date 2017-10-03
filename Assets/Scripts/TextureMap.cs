@@ -28,6 +28,8 @@ public class TextureMap : MonoBehaviour {
     [SerializeField]
     public TerrainColor[] terrainColors;
 
+	[SerializeField]
+	public GameObject hole;
     //[SerializeField]
     //Terrains terrainMouse;
 
@@ -37,8 +39,8 @@ public class TextureMap : MonoBehaviour {
         texMap = GetComponent<SpriteRenderer>().sprite.texture;
         Color[] col = texMap.GetPixels();
         float dist = 1000000;
-        Vector2 startPos;
-        Vector2 holePos;
+		Vector2 startPos = Vector2.zero;
+		Vector2 holePos = Vector2.zero;
         foreach (var terrColor in terrainColors)
         {
             if (terrColor.terr == Terrains.START)
@@ -74,7 +76,9 @@ public class TextureMap : MonoBehaviour {
         }
 
         GameObject holeInstance = Instantiate(hole);
-        holeInstance.transform.position = 
+		Vector3 pos = Camera.main.ScreenToWorldPoint(holePos);
+		pos.z = 0.0f;
+		holeInstance.transform.position  = pos;
 
     }
 
