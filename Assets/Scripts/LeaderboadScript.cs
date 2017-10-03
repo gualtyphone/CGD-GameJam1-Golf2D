@@ -36,8 +36,7 @@ public class LeaderboadScript : MonoBehaviour {
 			player3Score = ps.getLeaderboard() [2];
 		}
 		else if (ps.numOfPlayers == 4) 
-		{
-			player1Score = ps.getLeaderboard() [0];
+		{	player1Score = ps.getLeaderboard() [0];
 			player2Score = ps.getLeaderboard() [1];
 			player3Score = ps.getLeaderboard() [2];
 			player4Score = ps.getLeaderboard() [3];
@@ -52,13 +51,13 @@ public class LeaderboadScript : MonoBehaviour {
 		{
 			if (player1Score > player2Score)
 			{
-				ps.p1.transform.position.y = position1;
-				ps.p2.transform.position.y = position2;
+				//ps.p1.transform.position.y = position1.y;
+				//ps.p2.transform.position.y = position2.y;
 			} 
 			else
 			{
-				ps.p2.transform.position.y = position1;
-				ps.p1.transform.position.y = position2;
+				//ps.p2.transform.position.y = position1.y;
+				//ps.p1.transform.position.y = position2.y;
 			}
 		}
 		if (ps.numOfPlayers == 3)
@@ -72,7 +71,7 @@ public class LeaderboadScript : MonoBehaviour {
 
 
 		ps.p1.transform.position = position1;
-		ps.p2.transform.position = posi;
+		//ps.p2.transform.position = posi;
 
 
 	}
