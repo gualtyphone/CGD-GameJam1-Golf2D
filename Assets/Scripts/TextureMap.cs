@@ -72,6 +72,9 @@ public class TextureMap : MonoBehaviour {
                 }
             }
         }
+
+
+
     }
 
     void Update()
