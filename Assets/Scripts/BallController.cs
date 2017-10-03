@@ -15,7 +15,10 @@ public class BallController : MonoBehaviour {
 
 	[SerializeField]
 	Terrains terrain;
-
+    [SerializeField]
+    AudioClip BallinWater;
+    [SerializeField]
+    AudioSource source;
     void Start ()
     {
         //pos = new Vector3(0, 0, 0);
@@ -23,6 +26,7 @@ public class BallController : MonoBehaviour {
         rigi = GetComponent<Rigidbody2D>();
 		coll = GetComponent<Collider2D>();
         vel = rigi.velocity;
+        source = GetComponent<AudioSource>();
         //ApplyForce((360 - degrees) - offset, magnitude);
     }
 
@@ -42,6 +46,7 @@ public class BallController : MonoBehaviour {
 		case Terrains.WATER:
 			transform.position = texMap.startPos;
 			rigi.velocity = Vector2.zero;
+            source.PlayOneShot(BallinWater, 1f); 
 			break;
 		case Terrains.HILL:
 			break;

@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 1ff02170696fd694fbbe8bd8d33e8d31
-timeCreated: 1506511348
-licenseType: Pro
+timeCreated: 1507061553
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - heatmap: {instanceID: 0}
+  - texMap: {instanceID: 0}
+  - coll: {instanceID: 0}
+  - BallinWater: {fileID: 8300000, guid: 5ff15f3f16795fa44b88984dc8e9cefb, type: 3}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -43,19 +43,19 @@ public class PlayerSpaning : MonoBehaviour {
 		{
 			if (i == 0)
 			{
-				instantiatePlayer(Color.blue, KeyCode.A);
+				instantiatePlayer(Color.blue, ps.k1);
 			}
 			if (i == 1)
 			{
-				instantiatePlayer(Color.red, KeyCode.A);
+				instantiatePlayer(Color.red, ps.k2);
 			}
 			if (i == 2)
 			{
-				instantiatePlayer(new Color(1.0f, 0.0f, 1.0f), KeyCode.A);
+				instantiatePlayer(new Color(1.0f, 0.0f, 1.0f), ps.k3);
 			}
 			if (i == 3)
 			{
-				instantiatePlayer(Color.yellow, KeyCode.A);
+				instantiatePlayer(Color.yellow, ps.k4);
 			}
 		}
 	}
