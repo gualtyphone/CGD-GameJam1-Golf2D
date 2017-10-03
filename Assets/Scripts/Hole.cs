@@ -11,11 +11,15 @@ public class Hole : MonoBehaviour {
     [SerializeField]
     AudioSource source;
 
+    PlayerScript players;
+
+
     int numPlayers = 0;
 
     // Use this for initialization
     void Start () {
         source = GetComponent<AudioSource>();
+        players = FindObjectOfType<PlayerScript>();
     }
 	
 	// Update is called once per frame
@@ -44,7 +48,12 @@ public class Hole : MonoBehaviour {
                     source.PlayOneShot(ballPot, 1f);
 
                     numPlayers++;
-                    Debug.Log(numPlayers);
+                    if (numPlayers == players.numOfPlayers)
+                    {
+                        FindObjectOfType<GameManager>().map++;
+                        FindObjectOfType<GameManager>().needsUpdating = true;
+                        Application.LoadLevel(2);
+                    }
                 }
             }
         }
