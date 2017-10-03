@@ -23,7 +23,7 @@ public class powerBar : MonoBehaviour {
     public GameObject bat;
     public GameObject batParent;
     public GameObject imagePower;
-
+    public GameObject playerManager;
 	float prevSpeed = 0.0f;
 
 	public enum ballState
@@ -34,6 +34,11 @@ public class powerBar : MonoBehaviour {
 		SpeedSelection,
 		none
 	}
+
+    void start ()
+    {
+        
+    }
 
 	public ballState state = ballState.Rotating;
 
@@ -63,6 +68,7 @@ public class powerBar : MonoBehaviour {
             if (Input.GetKeyDown (playerKey)) {
 				ball.GetComponent<BallController> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
+                addHit();
 				state = ballState.Accelerating;
 				prevSpeed = -1.0f;
 			}
@@ -81,6 +87,27 @@ public class powerBar : MonoBehaviour {
 
 	
 	}
+
+    void addHit()
+    {
+        if (ball.GetComponent<Material>().color == Color.blue)
+        {
+            playerManager.GetComponent<PlayerScript>().addScore(0, 1);
+        }
+        if (ball.GetComponent<Material>().color == Color.red)
+        {
+            playerManager.GetComponent<PlayerScript>().addScore(2, 1);
+        }
+        if (ball.GetComponent<Material>().color == Color.green)
+        {
+            playerManager.GetComponent<PlayerScript>().addScore(3, 1);
+        }
+        if (ball.GetComponent<Material>().color == Color.yellow)
+        {
+            playerManager.GetComponent<PlayerScript>().addScore(4, 1);
+        }
+    }
+
     void RotateShot()
     {
         //transform.localRotation.Set(transform.localRotation.x, transform.localRotation.y + 1, transform.localRotation.z, transform.localRotation.w);
