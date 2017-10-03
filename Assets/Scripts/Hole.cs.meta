@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 1d981545be2e95e49b78099d8816d4a1
-timeCreated: 1506682075
-licenseType: Pro
+timeCreated: 1507061333
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ballPot: {fileID: 8300000, guid: 572d2c9f4eab6a540aabc88095082f8d, type: 3}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

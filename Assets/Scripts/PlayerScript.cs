@@ -115,7 +115,6 @@ public class PlayerScript : MonoBehaviour
         return false;
     }
 
-
     public void addScore(int playerNum, int score)
     {
         players[playerNum] += score;
