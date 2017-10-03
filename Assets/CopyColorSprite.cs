@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CopyColorSprite : MonoBehaviour {
 
-    SpriteRenderer other;
-    SpriteRenderer mine;
+    public SpriteRenderer other;
+    public SpriteRenderer mine;
 
     // Use this for initialization
     void Start () {

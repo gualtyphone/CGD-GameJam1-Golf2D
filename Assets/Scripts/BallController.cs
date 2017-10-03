@@ -72,7 +72,7 @@ public class BallController : MonoBehaviour {
 	        Vector2 drForce = new Vector2((surroundArea[4] - surroundArea[8]) * -0.5f, (surroundArea[4] - surroundArea[8]) * -0.5f);
 	        Vector2 dlForce = new Vector2((surroundArea[4] - surroundArea[6]) * 0.5f, (surroundArea[4] - surroundArea[6]) * -0.5f);
 	        
-	        vel = uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce;
+	        vel = (uForce + dForce + lForce + rForce + urForce + ulForce + drForce + dlForce)/9;
 		}
 
         //Debug.Log(vel);

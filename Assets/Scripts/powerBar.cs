@@ -12,7 +12,7 @@ public class powerBar : MonoBehaviour {
     float powerUp = 2.0f;
     float powerDown = 2.0f;
     float maxHeight = 100.0f;
-    float minHeight = 0.0f;
+    float minHeight = 2.0f;
     float maxLength = 2.5f;
     float minLength = 0.5f;
 

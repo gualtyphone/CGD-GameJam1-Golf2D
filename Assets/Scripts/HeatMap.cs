@@ -25,9 +25,9 @@ public class HeatMap : MonoBehaviour {
 
     public float[] getPixelsAtPosition(Vector3 pos)
     {
-        var vec = Camera.main.WorldToScreenPoint(pos);
-        int x = Mathf.FloorToInt(vec.x * heightmap.width / Camera.main.pixelWidth);
-        int z = Mathf.FloorToInt(vec.y * heightmap.height / Camera.main.pixelHeight);
+        //var vec = Camera.main.WorldToScreenPoint(pos);
+        int x = Mathf.FloorToInt(pos.x * 100.0f);
+        int z = Mathf.FloorToInt(pos.y * 100.0f);
         float[] arr = new float[9];
         if (x - 1 > 0 && z - 1 > 0 && x + 2 < heightmap.width && z + 2 < heightmap.height)
         {
