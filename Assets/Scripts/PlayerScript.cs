@@ -7,14 +7,23 @@ public class PlayerScript : MonoBehaviour {
     private int[] players;
     private int numOfPlayers;
     public GameObject player;
+	public GameObject playerManager;
+   // private MainMenuScript levelLoad;
+
+    void start()
+    {
+        DontDestroyOnLoad(playerManager);
+    }
 
     public void setNumOfPlayers(int numPlayers)
     {
-        numOfPlayers = numPlayers;   
+        numOfPlayers = numPlayers;
+		spawnPlayers ();
     }
     
-    private void spawnPlayers()
+    public void spawnPlayers()
     {
+		playerManager.GetComponent<MainMenuScript>().loadLevel(1);
         players = new int[numOfPlayers];
 
         for (int i = 0; i < numOfPlayers; i++)

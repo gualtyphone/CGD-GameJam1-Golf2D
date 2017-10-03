@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour {
 
-    public void MenuButton(int sceneNumber)
+    public void loadLevel(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
     }
