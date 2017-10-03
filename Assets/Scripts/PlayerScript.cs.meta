@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: c4cc484df3a7255418cea684f04d92ec
-timeCreated: 1506965140
-licenseType: Pro
+timeCreated: 1507042437
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - playerManager: {instanceID: 0}
+  - ball: {fileID: 1795782356378334, guid: 0660f91c270907f4e81abe82b360b6fe, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
