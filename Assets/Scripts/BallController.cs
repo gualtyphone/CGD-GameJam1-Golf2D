@@ -40,7 +40,7 @@ public class BallController : MonoBehaviour {
 			GetComponent<Rigidbody2D>().drag = 7; 
 			break;
 		case Terrains.WATER:
-			pos = texMap.startPos; 
+			pos = texMap.startPos;
 			break;
 		case Terrains.HILL:
 			break;

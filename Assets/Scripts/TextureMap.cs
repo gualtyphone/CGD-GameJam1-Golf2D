@@ -78,7 +78,7 @@ public class TextureMap : MonoBehaviour {
 					{
 						if (Vector4.Distance(col[x+ (y*texMap.width)], terrColor.col) <= 0.1f)
 						{
-							walls.Add(Instantiate(wall,new Vector3(x/100.0f +0.005f, y/100.0f+0.005f, 0),new Quaternion()));
+							walls.Add(Instantiate(wall,new Vector3(x/100.0f , y/100.0f, 0),new Quaternion()));
 						}
 					}
 				}
