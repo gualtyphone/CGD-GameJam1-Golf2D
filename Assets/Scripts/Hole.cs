@@ -34,7 +34,7 @@ public class Hole : MonoBehaviour {
         if ((transform.position - other.transform.position).sqrMagnitude < (other.bounds.extents - GetComponent<Collider2D>().bounds.extents).sqrMagnitude)
         {
             Debug.Log("Hole");
-            other.GetComponent<RollingBehaviour>().enabled = false;
+			other.GetComponent<BallController>().enabled = false;
             other.transform.position = transform.position;
             other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }

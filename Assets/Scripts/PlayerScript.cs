@@ -8,6 +8,26 @@ public class PlayerScript : MonoBehaviour {
     private int numOfPlayers;
     public GameObject player;
 
+	[SerializeField]
+	public GameObject ball;
+
+	GameObject instantiatePlayer(Color col, KeyCode button)
+	{
+		GameObject player = Instantiate(ball);
+		player.GetComponent<BallController>().heatmap = GameObject.FindObjectOfType<HeatMap>();
+		player.GetComponent<BallController>().texMap = GameObject.FindObjectOfType<TextureMap>();
+		player.transform.position = player.GetComponent<BallController>().texMap.startPos;
+		player.GetComponent<SpriteRenderer>().color = col;
+		SpriteRenderer[] renderers = player.GetComponentsInChildren<SpriteRenderer>();
+		foreach(var r in renderers)
+		{
+			r.color = col;
+		}
+		player.GetComponentInChildren<powerBar>().playerKey = button;
+		return player;
+	}
+
+
     public void setNumOfPlayers(int numPlayers)
     {
         numOfPlayers = numPlayers;   
@@ -19,22 +39,21 @@ public class PlayerScript : MonoBehaviour {
 
         for (int i = 0; i < numOfPlayers; i++)
         {
-            Instantiate(player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
             if (i == 1)
             {
-                player.GetComponent<Material>().color = Color.blue;
+				instantiatePlayer(Color.blue, KeyCode.A);
             }
             if (i == 2)
             {
-                player.GetComponent<Material>().color = Color.red;
+				instantiatePlayer(Color.blue, KeyCode.A);
             }
             if (i == 3)
             {
-                player.GetComponent<Material>().color = Color.green;
+				instantiatePlayer(Color.blue, KeyCode.A);
             }
             if (i == 4)
             {
-                player.GetComponent<Material>().color = Color.yellow;
+				instantiatePlayer(Color.blue, KeyCode.A);
             }
         }
     }
