@@ -51,6 +51,11 @@ public class Hole : MonoBehaviour {
                     if (numPlayers == players.numOfPlayers)
                     {
                         FindObjectOfType<GameManager>().map++;
+                        if (FindObjectOfType<GameManager>().map > FindObjectOfType<GameManager>().maps.Count)
+                        {
+                            Application.LoadLevel(3);
+                            return;
+                        }
                         FindObjectOfType<GameManager>().needsUpdating = true;
                         Application.LoadLevel(2);
                     }

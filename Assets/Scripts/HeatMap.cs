@@ -8,7 +8,7 @@ public class HeatMap : MonoBehaviour {
     public float[] array;
 
     // Use this for initialization
-    void Start () {
+    void OnEnable() {
         array = new float[9];
         heightmap = GetComponent<SpriteRenderer>().sprite.texture;
         array = getPixelsAtPosition(new Vector3(0.0f, 0.0f, 0.0f));

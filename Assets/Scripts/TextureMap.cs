@@ -41,7 +41,7 @@ public class TextureMap : MonoBehaviour {
     //Terrains terrainMouse;
 
     // Use this for initialization
-    void Start()
+    void OnEnable()
     {
 		walls = new List<GameObject>();
         texMap = GetComponent<SpriteRenderer>().sprite.texture;
