@@ -4,33 +4,48 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 
-    public int[] players;
+    private int[] players;
+    private int numOfPlayers;
     public GameObject player;
 
-    public void playerSpawn(int numPlayers)
+    public void setNumOfPlayers(int numPlayers)
     {
-        players = new int[numPlayers];
-
-        //numOfPlayers = numPlayers;
-
-        for (int i = 0; i < numPlayers; i++)
-        {
-            Instantiate(player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-        }
+        numOfPlayers = numPlayers;   
     }
     
+    private void spawnPlayers()
+    {
+        players = new int[numOfPlayers];
+
+        for (int i = 0; i < numOfPlayers; i++)
+        {
+            Instantiate(player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+            if (i == 1)
+            {
+                player.GetComponent<Material>().color = Color.blue;
+            }
+            if (i == 2)
+            {
+                player.GetComponent<Material>().color = Color.red;
+            }
+            if (i == 3)
+            {
+                player.GetComponent<Material>().color = Color.green;
+            }
+            if (i == 4)
+            {
+                player.GetComponent<Material>().color = Color.yellow;
+            }
+        }
+    }
+
     public void addScore(int playerNum, int score)
     {
         players[playerNum] += score;
     }
 
-//    // Use this for initialization
-//    void Start () {
-       
-//    }
-	
-//	// Update is called once per frame
-//	void Update () {
-        
-//	}
+    public int[] getLeaderboard()
+    {
+         return players;
+    }
 }
