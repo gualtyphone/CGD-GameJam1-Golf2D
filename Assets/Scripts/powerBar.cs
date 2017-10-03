@@ -49,7 +49,7 @@ public class powerBar : MonoBehaviour {
 		//transform.position = new Vector3(transform.position.x,  currentHeight, transform.position.z);
 		switch (state) {
 		case ballState.Moving:
-			if (ball.GetComponent<Rigidbody2D> ().velocity.magnitude == 0.0f) {
+			if (ball.GetComponent<Rigidbody2D> ().velocity.magnitude <= 0.1f) {
 				state = ballState.Rotating;
 				bat.SetActive (true);
 				batParent.transform.rotation = new Quaternion (0.0f, 0.0f, 0.0f, 0.0f);

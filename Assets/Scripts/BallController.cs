@@ -40,7 +40,8 @@ public class BallController : MonoBehaviour {
 			GetComponent<Rigidbody2D>().drag = 7; 
 			break;
 		case Terrains.WATER:
-			pos = texMap.startPos;
+			transform.position = texMap.startPos;
+			rigi.velocity = Vector2.zero;
 			break;
 		case Terrains.HILL:
 			break;
@@ -71,7 +72,7 @@ public class BallController : MonoBehaviour {
 
         //Debug.Log(vel);
         //Vector3 vel3 = new Vector3(vel.x, 0.0f, vel.y);
-        rigi.AddForce(vel);
+        rigi.AddForce(-vel);
     }
     //Direction 0-360 degrees 
     public void ApplyForce(float degree, float magnitude)
