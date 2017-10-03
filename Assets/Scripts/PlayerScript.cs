@@ -35,7 +35,6 @@ public class PlayerScript : MonoBehaviour {
 			p2.SetActive (true);
 			p3.SetActive (true);
 			p4.SetActive (false);
-
 		}
 		else if (numPlayers == 4)
 		{
