@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     public void setNumOfPlayers(int numPlayers)
-<<<<<<< HEAD
+
 	{
 		numOfPlayers = numPlayers;
 
@@ -75,36 +75,8 @@ public class PlayerScript : MonoBehaviour
 			p4.SetActive (true);
 		}
 	}
-=======
-    {
-        numOfPlayers = numPlayers;
 
-        if (numPlayers == 2)
-        {
-            p1.SetActive(true);
-            p2.SetActive(true);
-            p3.SetActive(false);
-            p4.SetActive(false);
-        }
-        else if (numPlayers == 3)
-        {
-            p1.SetActive(true);
-            p2.SetActive(true);
-            p3.SetActive(true);
-            p4.SetActive(false);
-        }
-        else if (numPlayers == 4)
-        {
-            p1.SetActive(true);
-            p2.SetActive(true);
-            p3.SetActive(true);
-            p4.SetActive(true);
-        }
-
-        //panel.GetComponent<GameObject> ().SetActive (false);
-
-        //GetComponent<MainMenuScript> ().loadLevel (1);
-    }
+    
 
     public bool setKeys(int player)
     {
@@ -148,7 +120,7 @@ public class PlayerScript : MonoBehaviour
         }
         return false;
     }
->>>>>>> abd427e07cca6f156f09a4bb99526cb0ead08484
+
 
     public void addScore(int playerNum, int score)
     {
