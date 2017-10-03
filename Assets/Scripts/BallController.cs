@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour {
     [SerializeField]
     AudioClip BallinWater;
     [SerializeField]
+    AudioClip StrikeBall;
+    [SerializeField]
     AudioSource source;
     void Start ()
     {
@@ -91,5 +93,6 @@ public class BallController : MonoBehaviour {
         forward.Normalize();
         Vector2 direction = new Vector2(forward.x, forward.y);
         rigi.AddForce(direction * magnitude);
+        source.PlayOneShot(StrikeBall, 1f);
     }
 }
