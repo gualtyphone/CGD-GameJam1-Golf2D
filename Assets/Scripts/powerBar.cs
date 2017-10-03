@@ -66,8 +66,17 @@ public class powerBar : MonoBehaviour {
 		case ballState.SpeedSelection:
 			MovePowerBar ();
             bat.transform.localScale = new Vector3(bat.transform.localScale.x, currentHeight / 100 * 2.0f + 1.0f, bat.transform.localScale.z);
-			bat.GetComponent<SpriteRenderer>().color = (new Color(1.0f - (currentHeight / 100.0f),currentHeight / 100.0f, 0.0f));
-			if (Input.GetKeyDown (playerKey)) {
+                bat.GetComponent<SpriteRenderer>().color = (new Color((1.0f - (currentHeight) / 100), (currentHeight) / 100, 0.0f));
+                //if (currentHeight < 50)
+                //{
+                //    bat.GetComponent<SpriteRenderer>().color = (new Color(1.0f, (currentHeight) / 50, 0.0f));
+                //}
+                //else
+                //{
+                //    bat.GetComponent<SpriteRenderer>().color = (new Color((1.0f - (currentHeight - 50) / 50), 1.0f, 0.0f));
+                //}
+
+                if (Input.GetKeyDown (playerKey)) {
 				ball.GetComponent<BallController> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
                 //addHit();
