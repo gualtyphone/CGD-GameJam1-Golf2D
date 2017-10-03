@@ -24,7 +24,6 @@ public class Hole : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         source.PlayOneShot(ballPot, 1f);
-
     }
 
     void OnTriggerStay2D(Collider2D other)
