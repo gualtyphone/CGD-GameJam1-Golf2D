@@ -22,7 +22,14 @@ public class PlayerScript : MonoBehaviour {
 	{
 		numOfPlayers = numPlayers;
 
-		if (numPlayers == 2)
+        if (numPlayers == 1)
+        {
+            p1.SetActive(true);
+            p2.SetActive(false);
+            p3.SetActive(false);
+            p4.SetActive(false);
+        }
+		else if (numPlayers == 2)
 		{
 			p1.SetActive (true);
 			p2.SetActive (true);
