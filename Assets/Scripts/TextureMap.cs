@@ -73,7 +73,8 @@ public class TextureMap : MonoBehaviour {
             }
         }
 
-
+        GameObject holeInstance = Instantiate(hole);
+        holeInstance.transform.position = 
 
     }
 
