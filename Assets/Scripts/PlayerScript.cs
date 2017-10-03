@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 
-    public int numOfPlayers = 0;
     public int[] players;
     public GameObject player;
 
@@ -12,7 +11,7 @@ public class PlayerScript : MonoBehaviour {
     {
         players = new int[numPlayers];
 
-        numOfPlayers = numPlayers;
+        //numOfPlayers = numPlayers;
 
         for (int i = 0; i < numPlayers; i++)
         {
