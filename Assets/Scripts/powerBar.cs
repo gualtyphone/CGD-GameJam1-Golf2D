@@ -61,8 +61,6 @@ public class powerBar : MonoBehaviour {
 			MovePowerBar ();
             bat.transform.localScale = new Vector3(bat.transform.localScale.x, currentHeight / 100 * 2.0f + 1.0f, bat.transform.localScale.z);
             if (Input.GetKeyDown (playerKey)) {
-
-                
 				ball.GetComponent<RollingBehaviour> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
 				state = ballState.Accelerating;
