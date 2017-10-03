@@ -31,6 +31,10 @@ public class HeatMap : MonoBehaviour {
         float[] arr = new float[9];
         if (x - 1 > 0 && z - 1 > 0 && x + 2 < heightmap.width && z + 2 < heightmap.height)
         {
+			if (heightmap == null)
+			{
+				return arr;
+			}
             Color[] colArr = heightmap.GetPixels(x - 1, z - 1, 3, 3);
             for (int w = 0; w < 3; w++)
             {

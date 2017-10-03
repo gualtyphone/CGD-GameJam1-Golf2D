@@ -24,6 +24,8 @@ public class ballCollisionSound : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+		source.PlayOneShot(ballHit, coll.relativeVelocity.magnitude);
+		return;
         // if power above 50% play hard sound, else play soft sound
         // or  convert hitPower to a normalized value, between
         // 0.5f and 1.5f for pitch
