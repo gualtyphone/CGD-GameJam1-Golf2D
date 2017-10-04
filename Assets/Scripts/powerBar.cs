@@ -118,25 +118,23 @@ public class powerBar : MonoBehaviour {
             bat.SetActive(false);
             break;
         }
-
-	
 	}
 
     void addHit()
     {
-        if (ball.GetComponent<Material>().color == Color.blue)
+        if (ball.GetComponent<SpriteRenderer>().color == Color.blue)
         {
             playerManager.GetComponent<PlayerScript>().addScore(0, 1);
         }
-        if (ball.GetComponent<Material>().color == Color.red)
+		if (ball.GetComponent<SpriteRenderer>().color == Color.red)
         {
             playerManager.GetComponent<PlayerScript>().addScore(2, 1);
         }
-        if (ball.GetComponent<Material>().color == Color.green)
+		if (ball.GetComponent<SpriteRenderer>().color == Color.green)
         {
             playerManager.GetComponent<PlayerScript>().addScore(3, 1);
         }
-        if (ball.GetComponent<Material>().color == Color.yellow)
+		if (ball.GetComponent<SpriteRenderer>().color == Color.yellow)
         {
             playerManager.GetComponent<PlayerScript>().addScore(4, 1);
         }

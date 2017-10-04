@@ -46,12 +46,14 @@ public class LeaderboadScript : MonoBehaviour {
 			player3Score = ps.getLeaderboard() [2];
 			player4Score = ps.getLeaderboard() [3];
 		}
+		Debug.Log (player1Score);
+		Debug.Log (player2Score);
 		createLeaderboard ();
 	}
 
 	void createLeaderboard ()
 	{	
-		if ( 1 == 1)
+		if (ps.numOfPlayers == 1)
 		{
 			position1.SetActive (true);
 			position2.SetActive (false);
@@ -67,6 +69,9 @@ public class LeaderboadScript : MonoBehaviour {
 			position3.SetActive (false);
 			position4.SetActive (false);
 
+			position1.GetComponentInChildren<Text> ().text = player1Score.ToString();
+			position2.GetComponentInChildren<Text> ().text = player2Score.ToString();
+
 		}
 		else if (ps.numOfPlayers == 3)
 		{
@@ -75,6 +80,10 @@ public class LeaderboadScript : MonoBehaviour {
 			position3.SetActive (true);
 			position4.SetActive (false);
 
+			position1.GetComponentInChildren<Text> ().text = player1Score.ToString();
+			position2.GetComponentInChildren<Text> ().text = player2Score.ToString();
+			position3.GetComponentInChildren<Text> ().text = player3Score.ToString();
+
 		}
 		if (ps.numOfPlayers == 4) 
 		{
@@ -82,6 +91,11 @@ public class LeaderboadScript : MonoBehaviour {
 			position2.SetActive (true);
 			position3.SetActive (true);
 			position4.SetActive (true);
+
+			position1.GetComponentInChildren<Text> ().text = player1Score.ToString();
+			position2.GetComponentInChildren<Text> ().text = player2Score.ToString();
+			position3.GetComponentInChildren<Text> ().text = player3Score.ToString();
+			position4.GetComponentInChildren<Text> ().text = player4Score.ToString();
 		}
 		//ps.p1.transform.position = position1;
 		//ps.p2.transform.position = posi;
