@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (needsUpdating && Application.loadedLevel == 1)
         {
+            GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+            foreach(var wall in walls)
+            {
+                Destroy(wall);
+            }
             Destroy(FindObjectOfType<Hole>().gameObject);
             FindObjectOfType<HeatMap>().gameObject.GetComponent<SpriteRenderer>().sprite = heatMaps[map];
             FindObjectOfType<TextureMap>().gameObject.GetComponent<SpriteRenderer>().sprite = maps[map];
