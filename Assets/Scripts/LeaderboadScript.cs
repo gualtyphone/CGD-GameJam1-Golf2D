@@ -22,10 +22,10 @@ public class LeaderboadScript : MonoBehaviour {
 	public void NextLevel()
 	{
 		if (FindObjectOfType<GameManager> ().map >= FindObjectOfType<GameManager> ().maps.Count) {
-			Application.LoadLevel (0);
+			Application.Quit();
 		} else {
 			FindObjectOfType<GameManager> ().needsUpdating = true;
-			Application.Quit();
+			Application.LoadLevel (1);
 		}
 	}
 
