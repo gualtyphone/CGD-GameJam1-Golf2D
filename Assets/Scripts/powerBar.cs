@@ -101,7 +101,7 @@ public class powerBar : MonoBehaviour {
                 if (Input.GetKeyDown (playerKey)) {
 				ball.GetComponent<BallController> ().ApplyForce(currentRotation, currentHeight/100);
 				bat.SetActive (false);
-                //addHit();
+                addHit();
 			}
 			break;
 		case ballState.Accelerating:
