@@ -40,7 +40,14 @@ public class HeatMap : MonoBehaviour {
             {
                 for (int h = 0; h < 3; h++)
                 {
-                    arr[w + h * 3] = Mathf.Min(colArr[w + h * 3].r, colArr[w + h * 3].a) ;
+                    if (colArr[w + h * 3].a > 0.0f)
+                    {
+                        arr[w + h * 3] = colArr[w + h * 3].r;
+                    }
+                    else
+                    {
+                        arr[w + h * 3] = 0.0f;
+                    }
                 }
             }
             return arr;
