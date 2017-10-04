@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
 	{
 		numOfPlayers = numPlayers;
-
+		players = new int[numOfPlayers];
         if (numPlayers == 1)
         {
             p1.SetActive(true);

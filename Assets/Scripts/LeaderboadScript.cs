@@ -17,9 +17,26 @@ public class LeaderboadScript : MonoBehaviour {
 
 	PlayerScript ps;
 
+	public GameObject button;
+
+	public void NextLevel()
+	{
+		if (FindObjectOfType<GameManager> ().map >= FindObjectOfType<GameManager> ().maps.Count) {
+			Application.LoadLevel (0);
+		} else {
+			FindObjectOfType<GameManager> ().needsUpdating = true;
+			Application.Quit();
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		ps = GameObject.FindObjectOfType<PlayerScript> ();
+		if (FindObjectOfType<GameManager> ().map >= FindObjectOfType<GameManager> ().maps.Count) {
+			button.GetComponentInChildren<Text> ().text = "Quit";
+		} else {
+			button.GetComponentInChildren<Text> ().text = "Next Level";
+		}
 	}
 
 	// Update is called once per frame
@@ -46,8 +63,6 @@ public class LeaderboadScript : MonoBehaviour {
 			player3Score = ps.getLeaderboard() [2];
 			player4Score = ps.getLeaderboard() [3];
 		}
-		Debug.Log (player1Score);
-		Debug.Log (player2Score);
 		createLeaderboard ();
 	}
 
@@ -100,4 +115,6 @@ public class LeaderboadScript : MonoBehaviour {
 		//ps.p1.transform.position = position1;
 		//ps.p2.transform.position = posi;
 	}
+
+
 }

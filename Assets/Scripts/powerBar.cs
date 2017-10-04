@@ -23,7 +23,7 @@ public class powerBar : MonoBehaviour {
     public GameObject bat;
     public GameObject batParent;
     public GameObject imagePower;
-    public GameObject playerManager;
+	public PlayerScript playerManager;
 	float prevSpeed = 0.0f;
     Rigidbody2D rigi;
 
@@ -41,6 +41,7 @@ public class powerBar : MonoBehaviour {
     void Start ()
     {
         rigi = GetComponentInParent<Rigidbody2D>();
+		playerManager = FindObjectOfType<PlayerScript> ();
     }
 
 	public ballState state = ballState.Rotating;
@@ -124,19 +125,19 @@ public class powerBar : MonoBehaviour {
     {
         if (ball.GetComponent<SpriteRenderer>().color == Color.blue)
         {
-            playerManager.GetComponent<PlayerScript>().addScore(0, 1);
+            playerManager.addScore(0, 1);
         }
 		if (ball.GetComponent<SpriteRenderer>().color == Color.red)
         {
-            playerManager.GetComponent<PlayerScript>().addScore(2, 1);
+            playerManager.addScore(1, 1);
         }
-		if (ball.GetComponent<SpriteRenderer>().color == Color.green)
+		if (ball.GetComponent<SpriteRenderer>().color == new Color(1.0f, 0.0f, 1.0f))
         {
-            playerManager.GetComponent<PlayerScript>().addScore(3, 1);
+            playerManager.addScore(2, 1);
         }
 		if (ball.GetComponent<SpriteRenderer>().color == Color.yellow)
         {
-            playerManager.GetComponent<PlayerScript>().addScore(4, 1);
+            playerManager.addScore(3, 1);
         }
     }
 

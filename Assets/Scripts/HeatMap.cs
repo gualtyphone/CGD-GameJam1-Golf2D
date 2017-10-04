@@ -16,11 +16,11 @@ public class HeatMap : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Debug.Log(Camera.current.ScreenToWorldPoint(Input.mousePosition));
-            array = getPixelsAtPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+        //if (Input.GetMouseButton(0))
+       // {
+		//Debug.Log(Camera.current.ScreenToWorldPoint(Input.mousePosition));
+     //       array = getPixelsAtPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+     //   }
     }
 
     public float[] getPixelsAtPosition(Vector3 pos)

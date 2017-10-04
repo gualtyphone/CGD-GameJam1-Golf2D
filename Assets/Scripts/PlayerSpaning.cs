@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerSpaning : MonoBehaviour {
 	
 	PlayerScript ps;
+	LeaderboadScript lbs;
 	// Use this for initialization
 	void Start () {
+		//DontDestroyOnLoad (gameObject);
 		ps = GameObject.FindObjectOfType<PlayerScript> ();
 		spawnPlayers ();
 	}
@@ -37,7 +39,6 @@ public class PlayerSpaning : MonoBehaviour {
 	public void spawnPlayers()
 	{
 		
-		ps.players = new int[ps.numOfPlayers];
 
 		for (int i = 0; i < ps.numOfPlayers; i++)
 		{
